@@ -4,6 +4,7 @@ import cookiePasrser from "cookie-parser";
 import "dotenv/config";
 import authRouter from "./routes/auth.routes.js";
 import connectDB from "./config/db.js";
+import messageRouter from "./routes/message.routes.js";
 
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
@@ -15,6 +16,7 @@ app.use(cookiePasrser()); // to parse the incoming cookies
 app.use(express.urlencoded({ extended: true })); // to parse the form data
 
 app.use("/api/auth", authRouter);
+app.use("/api/message", messageRouter);
 
 app.get("/health", (req, res) => {
   res.status(200).json({ success: true, message: "Server is up and running" });
