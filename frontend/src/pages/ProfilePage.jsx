@@ -28,15 +28,15 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#121212] text-[#e5e5e5] flex items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-base-200 text-base-content flex items-center justify-center p-4 sm:p-6 lg:p-8">
       {/* Container Box */}
-      <div className="w-full max-w-2xl rounded-2xl bg-slate-800/60 border border-slate-700/50 shadow-2xl p-6 sm:p-8 lg:p-10 backdrop-blur-xl">
+      <div className="w-full max-w-2xl rounded-box bg-base-100 border border-base-300 shadow-2xl p-6 sm:p-8 lg:p-10">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-base-content">
             Profile
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-base-content/60 mt-1">
             Your Profile Information
           </p>
         </div>
@@ -47,12 +47,12 @@ const ProfilePage = () => {
             <img
               src={selectedImage || authUser?.profilePic || "/avatar.png"}
               alt="profile"
-              className="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover border-4 border-slate-700/80 shadow-xl"
+              className="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover border-4 border-base-300 shadow-xl"
             />
 
             <label
               htmlFor="avatar-upload"
-              className={`absolute bottom-0 right-0 p-2.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg transition-all duration-200 ${
+              className={`absolute bottom-0 right-0 p-2.5 rounded-full bg-primary hover:bg-primary/80 text-primary-content shadow-lg transition-all duration-200 ${
                 isUpdatingProfile
                   ? "animate-pulse cursor-not-allowed"
                   : "cursor-pointer group-hover:scale-110"
@@ -74,7 +74,7 @@ const ProfilePage = () => {
             </label>
           </div>
 
-          <p className="text-xs text-slate-400 font-medium">
+          <p className="text-xs text-base-content/60 font-medium">
             {isUpdatingProfile
               ? "Uploading....."
               : "Click on camera icon to change DP"}
@@ -85,49 +85,49 @@ const ProfilePage = () => {
         <div className="space-y-4 mb-8">
           {/* Full Name */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2 flex items-center gap-2">
-              <User className="w-4 h-4 text-indigo-400" />
+            <label className="block text-xs font-semibold uppercase tracking-wider text-base-content/70 mb-2 flex items-center gap-2">
+              <User className="w-4 h-4 text-primary" />
               Full Name
             </label>
-            <div className="w-full px-4 py-3 rounded-xl bg-[#121212]/80 border border-slate-700/80 text-white text-sm font-medium">
+            <div className="w-full px-4 py-3 rounded-field bg-base-200 border border-base-300 text-base-content text-sm font-medium">
               {authUser?.fullname}
             </div>
           </div>
 
           {/* Email */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2 flex items-center gap-2">
-              <Mail className="w-4 h-4 text-indigo-400" />
+            <label className="block text-xs font-semibold uppercase tracking-wider text-base-content/70 mb-2 flex items-center gap-2">
+              <Mail className="w-4 h-4 text-primary" />
               Email Address
             </label>
-            <div className="w-full px-4 py-3 rounded-xl bg-[#121212]/80 border border-slate-700/80 text-white text-sm font-medium">
+            <div className="w-full px-4 py-3 rounded-field bg-base-200 border border-base-300 text-base-content text-sm font-medium">
               {authUser?.email}
             </div>
           </div>
         </div>
 
         {/* Account Information Card */}
-        <div className="rounded-xl bg-[#121212]/50 border border-slate-700/60 p-5">
-          <h2 className="text-base font-semibold text-white mb-4 flex items-center gap-2">
-            <ShieldCheck className="w-5 h-5 text-indigo-400" />
+        <div className="rounded-box bg-base-200 border border-base-300 p-5">
+          <h2 className="text-base font-semibold text-base-content mb-4 flex items-center gap-2">
+            <ShieldCheck className="w-5 h-5 text-primary" />
             Account Information
           </h2>
 
           <div className="space-y-3 text-sm">
-            <div className="flex items-center justify-between py-2 border-b border-slate-700/40">
-              <span className="text-slate-400 flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-slate-500" />
+            <div className="flex items-center justify-between py-2 border-b border-base-300">
+              <span className="text-base-content/60 flex items-center gap-2">
+                <Calendar className="w-4 h-4 text-base-content/50" />
                 Member Since
               </span>
-              <span className="font-medium text-white">
+              <span className="font-medium text-base-content">
                 {authUser?.createdAt?.split("T")[0]}
               </span>
             </div>
 
             <div className="flex items-center justify-between py-2">
-              <span className="text-slate-400">Account Status</span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span className="text-base-content/60">Account Status</span>
+              <span className="badge badge-success badge-outline gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse"></span>
                 Active
               </span>
             </div>
