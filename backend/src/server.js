@@ -8,7 +8,7 @@ import { fileURLToPath } from "url";
 import authRouter from "./routes/auth.routes.js";
 import connectDB from "./config/db.js";
 import messageRouter from "./routes/message.routes.js";
-import { app, server } from "./lib/socket.js";
+import { app, httpServer } from "./lib/socket.js";
 
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
@@ -49,7 +49,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 connectDB().then(() => {
-  server.listen(PORT, () => {
+  httpServer.listen(PORT, () => {
     console.log(`Server is up and running 🎉 on port ${PORT}`);
   });
 });
