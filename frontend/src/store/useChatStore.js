@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import axiosInstance from "../lib/axios.js";
 import toast from "react-hot-toast";
-import { getSocket } from "../lib/socket.js";
 
 export const useChatStore = create((set, get) => ({
   messages: [],
@@ -45,28 +44,6 @@ export const useChatStore = create((set, get) => ({
     } catch (error) {
       toast.error(error.response.data.message || "Failed to send message");
     }
-  },
-
-  subscribeToMessages: () => {
-    const { selectedUser } = get();
-    if (!selectedUser) return;
-
-    const socket = getSocket();
-    if (!socket) return;
-
-    socket.on("newMessage", (message) => {
-      // Only append if the message is from the currently open conversation
-      const isFromSelectedUser =
-        String(message.senderId) === String(selectedUser._id);
-      if (!isFromSelectedUser) return;
-
-      set((state) => ({ messages: [...state.messages, message] }));
-    });
-  },
-
-  unsubscribeFromMessages: () => {
-    const socket = getSocket();
-    if (socket) socket.off("newMessage");
   },
 
   setSelectedUser: (selectedUser) => set({ selectedUser }),

@@ -1,0 +1,9 @@
+{
+  "name": "vibechat",
+  "version": "1.0.0",
+  "description": "VibeChat - MERN real-time chat app",
+  "scripts": {
+    "build": "npm install --prefix frontend && npm run build --prefix frontend && npm install --prefix backend",
+    "start": "node backend/src/server.js"
+  }
+}
