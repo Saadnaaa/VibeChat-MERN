@@ -6,15 +6,15 @@ import cors from "cors";
 import authRouter from "./routes/auth.routes.js";
 import connectDB from "./config/db.js";
 import messageRouter from "./routes/message.routes.js";
+import { app, server } from "./lib/socket.js";
 
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 const PORT = process.env.PORT || 3000;
-const app = express();
 
-app.use(express.json()); // to parse the incoming requests;
-app.use(cookiePasrser()); // to parse the incoming cookies
-app.use(express.urlencoded({ extended: true })); // to parse the form data
+app.use(express.json());
+app.use(cookiePasrser());
+app.use(express.urlencoded({ extended: true }));
 // Implemented CORS to allow requests from the frontend
 app.use(
   cors({
@@ -31,7 +31,7 @@ app.get("/health", (req, res) => {
 });
 
 connectDB().then(() => {
-  app.listen(PORT, () => {
+  server.listen(PORT, () => {
     console.log(`Server is up and running 🎉 on port ${PORT}`);
   });
 });
