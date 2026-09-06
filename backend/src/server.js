@@ -3,6 +3,7 @@ import express from "express";
 import cookiePasrser from "cookie-parser";
 import "dotenv/config";
 import cors from "cors";
+import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import authRouter from "./routes/auth.routes.js";
@@ -37,9 +38,9 @@ app.get("/health", (req, res) => {
   res.status(200).json({ success: true, message: "Server is up and running" });
 });
 
-// Serve frontend in production
-if (process.env.NODE_ENV === "production") {
-  const frontendDist = path.join(__dirname, "../../frontend/dist");
+// Serve the built frontend when it is present (Render and local production runs).
+const frontendDist = path.join(__dirname, "../../frontend/dist");
+if (fs.existsSync(frontendDist)) {
   app.use(express.static(frontendDist));
 
   // All non-API routes serve index.html (for React Router)
